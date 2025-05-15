@@ -2,7 +2,7 @@ from src.entity.config_entity import dataingestion_config,DataValidationConfig,D
 from src.entity.config_entity import ModelTrainerConfig,ModelEvaluationConfig
 from src.constants import *
 from src.utils.common import read_yaml,create_directories
-print(config_file_path,"hi")
+
 
 class ConfiguarationManager:
     def __init__(
@@ -20,7 +20,6 @@ class ConfiguarationManager:
 
     def get_data_ingestion_config(self)->dataingestion_config:
         config = self.config.data_ingestion
-        print(f"{config}hi")
         create_directories([config.root_dir])
 
         data_ingestion_config = dataingestion_config(

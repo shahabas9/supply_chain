@@ -1,0 +1,84 @@
+schema: '2.0'
+stages:
+  data_ingestion:
+    cmd: python src/pipeline/stage_01_data_ingestion.py
+    deps:
+    - path: src/pipeline/stage_01_data_ingestion.py
+      hash: md5
+      md5: 7e2bbe464447beb241b5eca44d8f152c
+      size: 919
+    outs:
+    - path: artifacts/data_ingestion
+      hash: md5
+      md5: 455fcb8af08ddaaea748d16dc0d0e121.dir
+      size: 217529130
+      nfiles: 4
+  data_validation:
+    cmd: python src/pipeline/stage_02_data_validation.py
+    deps:
+    - path: artifacts/data_ingestion/data/
+      hash: md5
+      md5: 5f0bec59fc8e45a3380da4d3ce7356ef.dir
+      size: 191359957
+      nfiles: 3
+    - path: src/pipeline/stage_02_data_validation.py
+      hash: md5
+      md5: db315c877ed6ba26f53f3f9ac07d1952
+      size: 838
+    outs:
+    - path: artifacts/data_validation
+      hash: md5
+      md5: 0ccb3ea5849272ff03be5ab71786b9ff.dir
+      size: 23
+      nfiles: 1
+  data_transformation:
+    cmd: python src/pipeline/stage_03_data_transformation.py
+    deps:
+    - path: artifacts/data_validation/status.txt
+      hash: md5
+      md5: 86e6a2f694c57a675b3e2da6b95ff9ba
+      size: 23
+    - path: src/pipeline/stage_03_data_transformation.py
+      hash: md5
+      md5: 3ed51ade43f8cda16f7ad004c697e727
+      size: 1429
+    outs:
+    - path: artifacts/data_transformation
+      hash: md5
+      md5: 6f4185beb4d2d8aa66c03cd9fa1d20a3.dir
+      size: 262201978
+      nfiles: 6
+  model_training:
+    cmd: python src/pipeline/stage_04_model_trainer.py
+    deps:
+    - path: artifacts/data_transformation
+      hash: md5
+      md5: 6f4185beb4d2d8aa66c03cd9fa1d20a3.dir
+      size: 262201978
+      nfiles: 6
+    - path: src/pipeline/stage_04_model_trainer.py
+      hash: md5
+      md5: 7d73354d77a702418522155f394cc568
+      size: 868
+    outs:
+    - path: artifacts/model_trainer/model.joblib
+      hash: md5
+      md5: 6651b94208d3019fbf463cb3a4bdcf58
+      size: 126792
+  model_evaluation:
+    cmd: python src/pipeline/stage_05_model_evaluation.py
+    deps:
+    - path: artifacts/model_trainer/model.joblib
+      hash: md5
+      md5: 6651b94208d3019fbf463cb3a4bdcf58
+      size: 126792
+    - path: src/pipeline/stage_05_model_evaluation.py
+      hash: md5
+      md5: 8c76fccc1aa73fa90a44599e6959f34d
+      size: 910
+    outs:
+    - path: artifacts/model_evaluation
+      hash: md5
+      md5: 8ba71788fc692fce899d8ef47f20d2e4.dir
+      size: 95
+      nfiles: 1
