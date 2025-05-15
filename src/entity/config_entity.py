@@ -23,3 +23,15 @@ class DataTransformationConfig:
     model_feature_path : Path
     transformed_data : Path
     preprocessed_dir : Path
+
+@dataclass(frozen=True)
+class ModelTrainerConfig:
+    root_dir: Path
+    train_data_path: Path
+    test_data_path: Path
+    model_name: str
+    max_features: int
+    min_samples_split: int
+    n_estimators : int
+    target_column: str
+

@@ -1,4 +1,5 @@
 from src.entity.config_entity import dataingestion_config,DataValidationConfig,DataTransformationConfig
+from src.entity.config_entity import ModelTrainerConfig
 from src.constants import *
 from src.utils.common import read_yaml,create_directories
 print(config_file_path,"hi")
@@ -56,3 +57,24 @@ class ConfiguarationManager:
             preprocessed_dir = config.preprocessed_dir
         )
         return data_transformation_config
+    
+    def get_model_trainer_config(self) -> ModelTrainerConfig:
+        config = self.config.model_trainer
+        params = self.params.GradientBoostingRegressor
+        schema =  self.schema.TARGET_COLUMN
+
+        create_directories([config.root_dir])
+
+        model_trainer_config = ModelTrainerConfig(
+            root_dir=config.root_dir,
+            train_data_path = config.train_data_path,
+            test_data_path = config.test_data_path,
+            model_name = config.model_name,
+            min_samples_split = params.min_samples_split,
+            max_features = params.max_features,
+            n_estimators = params.n_estimators,
+            target_column = schema.name
+            
+        )
+
+        return model_trainer_config
