@@ -52,6 +52,7 @@ class ConfiguarationManager:
             data_dir = config.data_dir,
             scaler_path = config.scaler_path,
             model_feature_path = config.model_feature_path,
+            one_hot_encoder_path = config.one_hot_encoder_path,
             transformed_data = config.transformed_data,
             preprocessed_dir = config.preprocessed_dir
         )

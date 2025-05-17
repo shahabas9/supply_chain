@@ -3,7 +3,7 @@ from box.exceptions import BoxValueError
 import yaml
 from src import logger
 import json
-import joblib
+import joblib,pickle
 from ensure import ensure_annotations
 from box import ConfigBox
 from pathlib import Path
@@ -76,3 +76,13 @@ def save_json(path: Path, data: dict):
         json.dump(data, f, indent=4)
 
     logger.info(f"json file saved at: {path}")
+
+
+def load_model(scaler_path, feature_model_path ,model_path):
+    with open(scaler_path, 'rb') as f:
+        scaler = pickle.load(f)
+    with open(feature_model_path, 'rb') as f:
+        feature_model = pickle.load(f)
+    with open(model_path, 'rb') as f:
+        model = joblib.load(f)
+    return scaler, feature_model ,model

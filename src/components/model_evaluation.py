@@ -30,7 +30,7 @@ class ModelEvaluation:
         test_x = test_data.drop([self.config.target_column], axis=1)
         test_y = test_data[[self.config.target_column]]
         
-        predicted_qualities = model.predict(test_x)
+        predicted_qualities = model['model'].predict(test_x)
 
         (rmse, mae, r2) = self.eval_metrics(test_y, predicted_qualities)
         

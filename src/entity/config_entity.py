@@ -21,6 +21,7 @@ class DataTransformationConfig:
     data_dir : Path
     scaler_path : Path
     model_feature_path : Path
+    one_hot_encoder_path :Path
     transformed_data : Path
     preprocessed_dir : Path
 

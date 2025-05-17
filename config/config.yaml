@@ -17,6 +17,7 @@ data_transformation :
   data_dir :  artifacts/data_ingestion/data/DataCoSupplyChainDataset.csv
   scaler_path : artifacts/data_transformation/scaler.pkl
   model_feature_path : artifacts/data_transformation/rfr.pkl
+  one_hot_encoder_path : artifacts/data_transformation/onehot_encoder.pkl
   transformed_data :  artifacts/data_transformation/transformed_data.csv
   preprocessed_dir :  artifacts/data_transformation/preprocessed_data.csv
 

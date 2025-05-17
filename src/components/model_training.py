@@ -28,4 +28,4 @@ class ModelTrainer:
                                        random_state=42)
         grb.fit(train_x, train_y.values.ravel())
 
-        joblib.dump(grb, os.path.join(self.config.root_dir, self.config.model_name))
+        joblib.dump({'model': grb,'feature_names': train_x.columns.tolist()}, os.path.join(self.config.root_dir, self.config.model_name))
