@@ -97,7 +97,7 @@ def preprocess_data(df, encoder=None, feature_selector=None, fit_models=False):
 def get_selected_features_columns(X, feature_selector, top_k=1400):
     """Safe feature selection with bounds checking"""
     feature_importances = feature_selector.feature_importances_
-    valid_top_k = min(top_k, len(feature_importances))
+    
     selected_indices = np.argsort(feature_importances)[1400:]
     return X.columns[selected_indices]
 
